@@ -32,36 +32,49 @@ void push(stackADT* s, element e) {
 	}
 }
 
-//element pop(stackADT* s) {
-//	if(isEmpty())
-//}
+element pop(stackADT* s) {
 
-int maintest()
-{
-	int a = 10;
-	int* ptr1 = &a;
-	int** ptr2 = &ptr1;
-
-	printf("The address of a is %p\n", &a);
-	printf("The address of ptr1 is %p\n", &ptr1);
-	printf("The address of ptr2 is %p\n", &ptr2);
-
-	printf("The value of ptr1 is %p\n", ptr1);
-	printf("The value of ptr2 is %p\n", ptr2);
-	printf("The value of *ptr2 is %p\n", *ptr2);
-
-	printf("value of a: %d\n", a);
-	printf("value of *ptr1(point to variable a): %d\n", *ptr1);
-	printf("value of **ptr2(point to variable a): %d\n", **ptr2);
-
-	return 0;
+	if (isEmpty(*s) == true) {
+		printf("Stack is Empty!");
+		exit(1);
+	}
+	else {
+		return s->stack[--s->top];
+	}
 }
+
+void printStack(stackADT* s) {
+	for (int i = s->top; i >= 0; i--) {
+		printf("S[%d] |  %d  |\r\n", i, s->stack[i]);
+	}
+}
+
 int main()
 {
 	//====================initialize====================//
 	stackADT s;
 	s.top = -1;
-	maintest();
 
+	element item;
+	item.ItemKey = 5;
+	push(&s, item);
+
+	item.ItemKey = -9;
+	push(&s, item);
+
+	item.ItemKey = 3;
+	push(&s, item);
+
+	pop(&s);
+
+	item.ItemKey = 66;
+	push(&s, item);
+
+	item.ItemKey = 2;
+	push(&s, item);
+
+	pop(&s);
+
+	printStack(&s);
 }
 
